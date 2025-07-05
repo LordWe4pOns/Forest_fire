@@ -1,9 +1,0 @@
-{
-    "width": 10,
-    "height": 10,
-    "spreading probability": 1.0,
-    "burning trees coords":[
-        {"x": 5, "y": 5},
-        {"x": 1, "y": 1}
-    ]
-}

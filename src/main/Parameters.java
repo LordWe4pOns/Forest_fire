@@ -17,7 +17,7 @@ public class Parameters {
     public static final int DEFAULT_HEIGHT = 100;
     public static final double DEFAULT_SPREADING_PROBABILITY = 0.5;
 
-    public static final String CONFIG_PATH = "main/config.json";
+    public static final String CONFIG_PATH = "config.json";
 
     public Parameters() {
         this.width = DEFAULT_WIDTH;
