@@ -27,6 +27,10 @@ public class Forest {
         return this.trees[x][y];
     }
 
+    public boolean hasBurningTrees() {
+        return !this.burningTrees.isEmpty();
+    }
+
     private void igniteTree(int x, int y) {
         Tree newBurningTree = this.getTree(x, y);
         newBurningTree.ignite();
@@ -38,7 +42,7 @@ public class Forest {
         this.burningTrees.remove(tree);
     }
 
-    private void spreadUp(Tree tree, float probability) {
+    private void spreadUp(Tree tree, double probability) {
         Random rand = new Random();
         final int newBurningTreeX = tree.x;
         final int newBurningTreeY = tree.y + 1;
@@ -47,7 +51,7 @@ public class Forest {
         }
     }
 
-    private void spreadDown(Tree tree, float probability) {
+    private void spreadDown(Tree tree, double probability) {
         Random rand = new Random();
         final int newBurningTreeX = tree.x;
         final int newBurningTreeY = tree.y - 1;
@@ -56,7 +60,7 @@ public class Forest {
         }
     }
 
-    private void spreadLeft(Tree tree, float probability) {
+    private void spreadLeft(Tree tree, double probability) {
         Random rand = new Random();
         final int newBurningTreeX = tree.x - 1;
         final int newBurningTreeY = tree.y;
@@ -65,7 +69,7 @@ public class Forest {
         }
     }
 
-    private void spreadRight(Tree tree, float probability) {
+    private void spreadRight(Tree tree, double probability) {
         Random rand = new Random();
         final int newBurningTreeX = tree.x + 1;
         final int newBurningTreeY = tree.y;
@@ -74,7 +78,7 @@ public class Forest {
         }
     }
 
-    public void spreadLocally(Tree tree, float probability) {
+    private void spreadLocally(Tree tree, double probability) {
         if (tree.isBurning()) {
             this.spreadUp(tree, probability);
             this.spreadDown(tree, probability);
@@ -84,7 +88,7 @@ public class Forest {
         }
     }
 
-    public void spread(float probability) {
+    public void spread(double probability) {
         for (Tree tree : burningTrees) {
             this.spreadLocally(tree, probability);
         }

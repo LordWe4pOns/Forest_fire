@@ -1,1 +1,0 @@
-javac -cp src/model/java-json.jar src/model/*.java src/Main.java 
