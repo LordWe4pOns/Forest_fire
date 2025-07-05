@@ -42,4 +42,18 @@ public class Tree {
             this.state = TreeState.ASHES;
         }
     }
+
+    @Override
+    public String toString() {
+        switch (this.state) {
+            case ALIVE:
+                return "T";
+            case BURNING:
+                return "X";
+            case ASHES:
+                return "_";
+            default:
+                return "";
+        }
+    }
 }

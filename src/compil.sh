@@ -1,1 +1,1 @@
-javac -cp java-json.jar model/*.java controller/*.java main/*.java 
+javac -cp java-json.jar model/*.java view/*.java controller/*.java main/*.java 

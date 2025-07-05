@@ -31,11 +31,17 @@ public class Forest {
         return !this.burningTrees.isEmpty();
     }
 
-    private void igniteTree(int x, int y) {
+    public void igniteTree(Tree tree) {
+        tree.ignite();
+        this.burningTrees.add(tree);
+    }
+
+    public void igniteTree(int x, int y) {
         Tree newBurningTree = this.getTree(x, y);
         newBurningTree.ignite();
         this.burningTrees.add(newBurningTree);
     }
+
 
     private void extinguishTree(Tree tree) {
         tree.extinguish();
@@ -47,7 +53,10 @@ public class Forest {
         final int newBurningTreeX = tree.x;
         final int newBurningTreeY = tree.y + 1;
         if (newBurningTreeY < this.HEIGHT && rand.nextFloat() - probability <= 0.0) {
-            this.igniteTree(newBurningTreeX, newBurningTreeY);
+            Tree newBurningTree = this.getTree(newBurningTreeX, newBurningTreeY);
+            if (newBurningTree.isAlive()) {
+                this.igniteTree(newBurningTree);
+            }
         }
     }
 
@@ -56,7 +65,10 @@ public class Forest {
         final int newBurningTreeX = tree.x;
         final int newBurningTreeY = tree.y - 1;
         if (newBurningTreeY >= 0 && rand.nextFloat() - probability <= 0.0) {
-            this.igniteTree(newBurningTreeX, newBurningTreeY);
+            Tree newBurningTree = this.getTree(newBurningTreeX, newBurningTreeY);
+            if (newBurningTree.isAlive()) {
+                this.igniteTree(newBurningTree);
+            }
         }
     }
 
@@ -65,7 +77,10 @@ public class Forest {
         final int newBurningTreeX = tree.x - 1;
         final int newBurningTreeY = tree.y;
         if (newBurningTreeX >= 0 && rand.nextFloat() - probability <= 0.0) {
-            this.igniteTree(newBurningTreeX, newBurningTreeY);
+            Tree newBurningTree = this.getTree(newBurningTreeX, newBurningTreeY);
+            if (newBurningTree.isAlive()) {
+                this.igniteTree(newBurningTree);
+            }
         }
     }
 
@@ -74,7 +89,10 @@ public class Forest {
         final int newBurningTreeX = tree.x + 1;
         final int newBurningTreeY = tree.y;
         if (newBurningTreeX < this.WIDTH && rand.nextFloat() - probability <= 0.0) {
-            this.igniteTree(newBurningTreeX, newBurningTreeY);
+            Tree newBurningTree = this.getTree(newBurningTreeX, newBurningTreeY);
+            if (newBurningTree.isAlive()) {
+                this.igniteTree(newBurningTree);
+            }
         }
     }
 
@@ -84,13 +102,15 @@ public class Forest {
             this.spreadDown(tree, probability);
             this.spreadLeft(tree, probability);
             this.spreadRight(tree, probability);
-            this.extinguishTree(tree);
         }
     }
 
     public void spread(double probability) {
-        for (Tree tree : burningTrees) {
+        final int size = this.burningTrees.size();
+        for (int i = 0; i < size; i++) {
+            Tree tree = this.burningTrees.get(0);
             this.spreadLocally(tree, probability);
+            this.extinguishTree(tree);
         }
     }
 }
