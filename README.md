@@ -12,7 +12,7 @@ git clone https://github.com/LordWe4pOns/Forest_fire.git
 
 - Option 2 : Download the ZIP archive and extract it
 
-### Compile the project
+### Compiling the project
 
 The following actions should be performed from a bash terminal, in the `src` directory :
 
