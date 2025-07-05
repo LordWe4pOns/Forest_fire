@@ -1,6 +1,8 @@
 # Forest fire
 Simulation of the spreading of a forest fire, written in Java
 
+A `T` represents a tree, a `X` represents a tree that's on fire and a `_` represents a tree's ashes
+
 ## Installation
 
 ### Downloading the project
