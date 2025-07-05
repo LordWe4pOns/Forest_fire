@@ -7,14 +7,18 @@ enum TreeState {
 }
 
 public class Tree {
+    public final int x;
+    public final int y;
     private TreeState state;
     
 
-    public Tree () {
+    public Tree (int x, int y) {
+        this.x = x;
+        this.y = y;
         this.state = TreeState.ALIVE;
     }
 
-    
+
     public boolean isAlive() {
         return this.state.equals(TreeState.ALIVE);
     }
@@ -27,15 +31,15 @@ public class Tree {
         return this.state.equals(TreeState.ASHES);
     }
 
-    public void extinguish() {
-        if (this.isBurning()) {
-            this.state = TreeState.ASHES;
+    public void ignite() {
+        if (this.isAlive()) {
+            this.state = TreeState.BURNING;
         }
     }
 
-    public void ignite() {
-        if (!this.isAshes()) {
-            this.state = TreeState.BURNING;
+    public void extinguish() {
+        if (this.isBurning()) {
+            this.state = TreeState.ASHES;
         }
     }
 }
